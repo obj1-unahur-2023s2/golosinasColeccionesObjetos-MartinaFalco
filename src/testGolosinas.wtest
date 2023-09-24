@@ -33,7 +33,8 @@ test "El bombon es libre de gluten y sabe a frutilla"{
 
 test "Cuando el bombon recibe un mordisco, pierde un 20 % de su peso inicial + 1 gramo extra"{
 	bombon.recibirMordisco()
-	assert.that(bombon.peso() == 11)
+	bombon.recibirMordisco()
+	assert.that(bombon.peso() == 7.8)
 }
 
 //ALFAJOR
@@ -50,7 +51,8 @@ test "El alfajor no es libre de gluten y es de sabor chocolate"{
 
 test "Cuando el alfajor recibe un mordisco, pierde el 20 % de su peso inicial"{
 	alfajor.recibirMordisco()
-	assert.that(alfajor.peso() == 240)
+	alfajor.recibirMordisco()
+	assert.equals(alfajor.peso(), 192)
 }
 
 //CARAMELO
@@ -67,7 +69,8 @@ test "El caramelo es libre de gluten y es de sabor frutilla"{
 
 test "Cuando el caramelo recibe un mordisco, pierde 1 gramo"{
 	caramelo.recibirMordisco()
-	assert.that(caramelo.peso() == 4)
+	caramelo.recibirMordisco()
+	assert.that(caramelo.peso() == 3)
 }
 
 //CHUPETIN
@@ -84,10 +87,45 @@ test "El chupetin es libre de gluten y es de sabor naranja"{
 
 test "Cuando el chupetin recibe un mordisco, pierde el 10 % de su peso cuando su peso es mayor a 2 gramos"{
 	chupetin.recibirMordisco()
-	assert.that(chupetin.peso() == 6.3)
+	chupetin.recibirMordisco()
+	assert.that(chupetin.peso() == 5.67)
 }
 
- 
+//OBLEA
+
+test "La oblea vale 5 pesos y pesa 250 gramos inicialmente"{
+	assert.that(oblea.precio() == 5)
+	assert.equals(oblea.peso(),250)
+}
+
+test "La oblea no es libre de gluten y es de sabor vainilla"{
+	assert.that(oblea.contieneGluten())
+	assert.equals(oblea.sabor(),vainilla)
+}
+
+test "Cuando la oblea recibe un mordisco, pierde peso en cantidad que depende del peso actual: si es mayor a 70 gramos pierde el 50 % de su peso"{
+	oblea.recibirMordisco()
+	assert.that(oblea.peso() == 125)
+}
+
+test "Cuando la oblea recibe un mordisco, pierde peso en cantidad que depende del peso actual: si es menor a 70 gramos pierde el 25% de su peso,"{
+	oblea.recibirMordisco()
+	oblea.recibirMordisco()
+	assert.that(oblea.peso() == 15.625)
+}
+
+//PASTILLA DE TUTTI FRUTTI
+
+
+
+
+
+
+
+
+
+
+
 
 
 
