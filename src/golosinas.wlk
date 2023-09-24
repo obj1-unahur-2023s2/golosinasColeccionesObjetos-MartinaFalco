@@ -1,12 +1,13 @@
+import sabores.*
 
 object bombon {
 var property precio = 5
 var property peso = 15
-var property sabor = "Frutilla"
+var property sabor = frutilla
 var property contieneGluten = false
 
 method recibirMordisco(){
-	peso = (peso * 0.8 - 1)
+	peso = (peso * 0.8) - 1
 }
 
 }
@@ -14,7 +15,7 @@ method recibirMordisco(){
 object alfajor {
 var property precio = 12
 var property peso = 300
-var property sabor = "Chocolate"
+var property sabor = chocolate
 var property contieneGluten = true
 
 method recibirMordisco(){
@@ -27,7 +28,7 @@ object caramelo{
 	
 var property precio = 1
 var property peso = 5
-var property sabor = "Frutilla"
+var property sabor = frutilla
 var property contieneGluten = false
 
 method recibirMordisco(){
@@ -40,7 +41,7 @@ object chupetin{
 
 var property precio = 2
 var property peso = 7
-var property sabor = "Naranja"
+var property sabor = naranja
 var property contieneGluten = false
 
 method recibirMordisco(){
@@ -55,7 +56,7 @@ object oblea{
 	
 var property precio = 5
 var property peso = 250
-var property sabor = "Vainilla"
+var property sabor = vainilla
 var property contieneGluten = true
 
 method recibirMordisco(){
@@ -69,30 +70,31 @@ method recibirMordisco(){
 }
 
 object chocolatin{
-var property peso
-var property precio = peso * 0.50
-var property sabor = "Chocolate"
+var property peso = 0
+var property precio = 0
+var property sabor = chocolate
 var property contieneGluten = true
 
 method asignarPeso(nuevoPeso){
 		peso = nuevoPeso
+		precio = peso * 0.50
 	}
-	
+
 method recibirMordisco(){
 	peso -= 2
 }
 
 }
 
-
 object golosinaBaniada{
 	var property precio
 	var property peso
 	var property sabor
-	var property contieneGluten
+	var property contieneGluten 
+	var property pesoBanio = 4
 	
 	method asignarPeso(golosinaBase){
-		peso = peso.golosinaBase() + 4
+		peso = peso.golosinaBase() + pesoBanio
 	}
 	
 	method asignarPrecio(golosinaBase){
@@ -106,14 +108,9 @@ object golosinaBaniada{
 	method asignarEstado(golosinaBase){
 		contieneGluten = contieneGluten.golosinaBase()
 	}
-	method recibirMordisco(golosinaBase, cantidad){
-		golosinaBase.recibirMordisco()
-		if (cantidad == 1){
-			peso -= 2
-		}	
-		if (cantidad == 2){
-			peso -= 4
-		}	
+	method recibirMordisco(golosinaBase){
+			golosinaBase.recibirMordisco()
+			pesoBanio -= 2
 	}
 }
 	
@@ -122,8 +119,8 @@ object pastillaTuttiFrutti{
 	
 var property precio
 var property peso = 5
-var property sabor
-var property contieneGluten
+var property sabor = frutilla
+var property contieneGluten = true
 
 method cambiarEstado(nuevoEstado){
 	contieneGluten = nuevoEstado
@@ -138,25 +135,13 @@ method nuevoPrecio(){
 	}
 }
 
-method recibirMordisco(cantidad){
-	if (cantidad == 1){
-		sabor = "frutilla"
-	}
-	if (cantidad == 2){
-		sabor = "chocolate"
-	}
-	if (cantidad == 3){
-		sabor = "naranja"
-	}
-	if (cantidad == 4){
-		sabor = "frutilla"
-	}	
-}
+method recibirMordisco(){
+	sabor = sabor.saborSiguiente()
 		
 }
 
 
-
+}
 
 
 

@@ -1,6 +1,94 @@
+import golosinas.*
+import sabores.*
 
-test "testX" {
+//CHOCOLATIN
 
-	assert.that(true)
+test "El precio del chocolatin es de 20 pesos si este pesa 40" {
+	chocolatin.asignarPeso(40)
+	assert.that(chocolatin.precio() == 20)
 
 }
+
+test "Si el chocolatin pesa 100, al dar un mordisco pesa 98"{
+	chocolatin.asignarPeso(100)
+	chocolatin.recibirMordisco()
+	assert.equals(chocolatin.peso(),98)
+}
+
+test "El chocolatin es de sabor chocolate y contiene gluten"{
+	assert.that(chocolatin.contieneGluten())
+	assert.that(chocolatin.sabor() == chocolate)
+}
+
+//BOMBON
+test "El precio inicial den bombon es de 5 pesos y su peso 15"{
+	assert.that(bombon.precio() == 5)
+	assert.equals(bombon.peso(),15)
+}
+
+test "El bombon es libre de gluten y sabe a frutilla"{
+	assert.notThat(bombon.contieneGluten())
+	assert.equals(bombon.sabor(),frutilla)
+}
+
+test "Cuando el bombon recibe un mordisco, pierde un 20 % de su peso inicial + 1 gramo extra"{
+	bombon.recibirMordisco()
+	assert.that(bombon.peso() == 11)
+}
+
+//ALFAJOR
+
+test "El alfajor pesa inicialmente 300 gramos y vale 12 pesos"{
+	assert.that(alfajor.precio() == 12)
+	assert.equals(alfajor.peso(),300)
+}
+
+test "El alfajor no es libre de gluten y es de sabor chocolate"{
+	assert.that(alfajor.contieneGluten())
+	assert.equals(alfajor.sabor(),chocolate)
+}
+
+test "Cuando el alfajor recibe un mordisco, pierde el 20 % de su peso inicial"{
+	alfajor.recibirMordisco()
+	assert.that(alfajor.peso() == 240)
+}
+
+//CARAMELO
+
+test "El caramelo vale 1 peso y pesa 5 gramos inicialmente"{
+	assert.that(caramelo.precio() == 1)
+	assert.equals(caramelo.peso(),5)
+}
+
+test "El caramelo es libre de gluten y es de sabor frutilla"{
+	assert.notThat(caramelo.contieneGluten())
+	assert.equals(caramelo.sabor(),frutilla)
+}
+
+test "Cuando el caramelo recibe un mordisco, pierde 1 gramo"{
+	caramelo.recibirMordisco()
+	assert.that(caramelo.peso() == 4)
+}
+
+//CHUPETIN
+
+test "El chupetin vale 2 pesos y pesa 7 gramos inicialmente"{
+	assert.that(chupetin.precio() == 2)
+	assert.equals(chupetin.peso(),7)
+}
+
+test "El chupetin es libre de gluten y es de sabor naranja"{
+	assert.notThat(chupetin.contieneGluten())
+	assert.equals(chupetin.sabor(),naranja)
+}
+
+test "Cuando el chupetin recibe un mordisco, pierde el 10 % de su peso cuando su peso es mayor a 2 gramos"{
+	chupetin.recibirMordisco()
+	assert.that(chupetin.peso() == 6.3)
+}
+
+ 
+
+
+
+
