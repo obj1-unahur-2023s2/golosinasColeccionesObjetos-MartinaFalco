@@ -86,47 +86,39 @@ method recibirMordisco(){
 
 }
 
+
 object golosinaBaniada{
-	var property precio
-	var property peso
+	var property precio = 0
+	var property peso = 0
 	var property sabor
 	var property contieneGluten 
 	var property pesoBanio = 4
+	var property golosinaBase
 	
-	method asignarPeso(golosinaBase){
-		peso = peso.golosinaBase() + pesoBanio
+	method asignarGolosinaBase(golosina){
+		golosinaBase = golosina	
+		peso = golosinaBase.peso() + pesoBanio
+		precio = golosinaBase.precio() + 2
+		sabor =  golosinaBase.sabor()
+		contieneGluten = golosinaBase.contieneGluten()
 	}
-	
-	method asignarPrecio(golosinaBase){
-		precio = precio.golosinaBase() + 2
-	}
-	
-	method asignarSabor(golosinaBase){
-		sabor = sabor.golosinaBase()
-	}	
-	
-	method asignarEstado(golosinaBase){
-		contieneGluten = contieneGluten.golosinaBase()
-	}
-	method recibirMordisco(golosinaBase){
+	method recibirMordisco(){
 			golosinaBase.recibirMordisco()
 			pesoBanio -= 2
+			peso = golosinaBase.peso() + pesoBanio
 	}
 }
 	
-
 object pastillaTuttiFrutti{
 	
-var property precio
+var property precio = 0
 var property peso = 5
 var property sabor = frutilla
-var property contieneGluten = true
+var property contieneGluten
 
 method cambiarEstado(nuevoEstado){
 	contieneGluten = nuevoEstado
-}
-
-method nuevoPrecio(){
+	
 	if(not(contieneGluten)){
 		precio = 7
 	}

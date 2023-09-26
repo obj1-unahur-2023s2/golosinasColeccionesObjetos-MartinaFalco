@@ -1,12 +1,16 @@
 import golosinas.*
+import sabores.*
 
 object mariano {
 	const bolsaDeGolosinas = []
-	const golosinasDeseadas = []
 	
-	method golosinasFaltantes(golosinas){
+	method golosinasFaltantes(golosinasDeseadas){
 		//Estan en la lista de golosinasDeseadas y no en la lista de bolsaDeGolosinas.
-
+		return golosinasDeseadas.difference({bolsaDeGolosinas})
+	}
+	
+	method gustosFaltantes(gustosDeseados) {
+		gustosDeseados.difference({unaGolosina => unaGolosina.sabor()})
 	}
 	
 	method comprar(unaGolosina){
@@ -51,8 +55,8 @@ object mariano {
 	}
 	
 	method sabores(){
-		//Devolver un atributo de todos los objetos sin repetidos 
-		
+		//Devuelve los sabores de las golosinas de la bolsa, idealmente sin repetidos.
+		bolsaDeGolosinas.map({unaGolosina => unaGolosina.sabor()})
 	}
 	method golosinaMasCara(){
 		bolsaDeGolosinas.max({unaGolosina => unaGolosina.precio()})

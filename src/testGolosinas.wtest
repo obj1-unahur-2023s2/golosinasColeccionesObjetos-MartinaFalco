@@ -111,22 +111,87 @@ test "Cuando la oblea recibe un mordisco, pierde peso en cantidad que depende de
 test "Cuando la oblea recibe un mordisco, pierde peso en cantidad que depende del peso actual: si es menor a 70 gramos pierde el 25% de su peso,"{
 	oblea.recibirMordisco()
 	oblea.recibirMordisco()
-	assert.that(oblea.peso() == 15.625)
+	oblea.recibirMordisco()
+	assert.that(oblea.peso() == 3.90625)
 }
 
 //PASTILLA DE TUTTI FRUTTI
 
+test "La pastilla de tutti-frutti vale 7 pesos si no contiene gluten y pesa 5 gramos inicialmente"{
+	pastillaTuttiFrutti.cambiarEstado(false)
+	assert.that(pastillaTuttiFrutti.precio() == 7)
+	assert.equals(pastillaTuttiFrutti.peso(),5)
+}
 
+test "La pastilla de tutti-frutti vale 10 pesos si contiene gluten"{
+	pastillaTuttiFrutti.cambiarEstado(true)
+	assert.that(pastillaTuttiFrutti.precio() == 10)
+}
 
+test "Al recibir un mordisco el sabor de la pastilla de tutti-frutti cambia de frutilla a chocolate"{
+	pastillaTuttiFrutti.recibirMordisco()
+	assert.notEquals(pastillaTuttiFrutti.sabor(),frutilla)
+}
 
+test "Al recibir dos mordiscos el sabor de la pastilla de tutti-frutti cambia de frutilla a chocolate y de chocolate a naranja"{
+	pastillaTuttiFrutti.recibirMordisco()
+	pastillaTuttiFrutti.recibirMordisco()
+	assert.equals(pastillaTuttiFrutti.sabor(),naranja)
+}
 
+//GOLOSINA BAÑADA
 
+test "La pastilla de tutti-frutti bañada pesa inicialmente 9 y vale 9 pesos si no tiene gluten"{
+	pastillaTuttiFrutti.cambiarEstado(false)
+	golosinaBaniada.asignarGolosinaBase(pastillaTuttiFrutti)
+	assert.that(golosinaBaniada.precio() == 9)
+	assert.that(golosinaBaniada.peso() == 9)
+}
 
+test "Al morder la pastilla de tutti-frutti bañada dos veces en el primer mordisco pierde 2 gramos de bañado, y en el segundo los otros dos."{
+	golosinaBaniada.asignarGolosinaBase(pastillaTuttiFrutti)
+	golosinaBaniada.recibirMordisco()
+	golosinaBaniada.recibirMordisco()
+	assert.that(golosinaBaniada.pesoBanio() == 0)
+}
 
+test "Si el chocolatin pesa 100, el chocolatin bañado vale inicialmente 52 pesos y pesa 104"{
+	chocolatin.asignarPeso(100)
+	golosinaBaniada.asignarGolosinaBase(chocolatin)
+	assert.that(golosinaBaniada.precio() == 52)
+	assert.that(golosinaBaniada.peso() == 104)
+}
 
+test "Al morder el chocolatin bañado dos veces en el primer mordisco pierde 2 gramos de bañado, y en el segundo los otros dos, además Con cada mordisco se da un mordisco a la golosina de base."{
+	chocolatin.asignarPeso(100)
+	golosinaBaniada.asignarGolosinaBase(chocolatin)
+	golosinaBaniada.recibirMordisco()
+	golosinaBaniada.recibirMordisco()
+	assert.that(golosinaBaniada.pesoBanio() == 0)
+	assert.that(golosinaBaniada.peso() == 96)
+}
 
+test "El chocolatin bañado contiene gluten"{
+	golosinaBaniada.asignarGolosinaBase(chocolatin)
+	assert.that(golosinaBaniada.contieneGluten())
+}
 
+test "El chupetín bañado pesa inicialmente 11 gramos y vale 4 pesos"{
+	golosinaBaniada.asignarGolosinaBase(chupetin)
+	assert.that(golosinaBaniada.precio() == 4)
+	assert.that(golosinaBaniada.peso() == 11)
+}
 
+test "El chupetin bañado no contiene gluten"{
+	golosinaBaniada.asignarGolosinaBase(chupetin)
+	assert.notThat(golosinaBaniada.contieneGluten())
+}
 
-
+test "Al morder el chupetin bañado dos veces en el primer mordisco pierde 2 gramos de bañado, y en el segundo los otros dos, además Con cada mordisco se da un mordisco a la golosina de base."{
+	golosinaBaniada.asignarGolosinaBase(chupetin)
+	golosinaBaniada.recibirMordisco()
+	golosinaBaniada.recibirMordisco()
+	assert.that(golosinaBaniada.pesoBanio() == 0)
+	assert.that(golosinaBaniada.peso() == 5.67)
+}
 
